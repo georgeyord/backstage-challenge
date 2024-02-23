@@ -26,6 +26,7 @@ import {
 } from '@backstage/core-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import { Shortcuts } from '@backstage/plugin-shortcuts';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -84,6 +85,9 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
       >
         <SidebarSettings />
       </SidebarGroup>
+      <SidebarDivider />
+      <Shortcuts allowExternalLinks />
+      <SidebarSpace />
     </Sidebar>
     {children}
   </SidebarPage>
