@@ -27,6 +27,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { Shortcuts } from '@backstage/plugin-shortcuts';
+import ChatIcon from '@material-ui/icons/Chat';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -86,7 +87,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarSettings />
       </SidebarGroup>
       <SidebarDivider />
-      <Shortcuts allowExternalLinks />
+      <Shortcuts icon={ChatIcon} allowExternalLinks />
       <SidebarSpace />
     </Sidebar>
     {children}
