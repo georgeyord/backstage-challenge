@@ -41,6 +41,8 @@
     "@backstage/plugin-user-settings": "^0.8.1",
     "@backstage/theme": "^0.5.1",
     "@circleci/backstage-plugin": "^0.1.1",
+    "@internal/backstage-plugin-sample": "^0.1.0",
+    "@internal/backstage-plugin-sample-frontend": "^0.1.0",
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.9.1",
     "history": "^5.0.0",

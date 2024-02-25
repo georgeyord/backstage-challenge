@@ -2519,6 +2519,24 @@
     "@types/react" "^16.13.1 || ^17.0.0 || ^18.0.0"
     history "^5.0.0"
 
+"@backstage/dev-utils@^1.0.27":
+  version "1.0.27"
+  resolved "https://registry.yarnpkg.com/@backstage/dev-utils/-/dev-utils-1.0.27.tgz#0da942c0c8cae11f9b771ec106b0b881cc84fdc1"
+  integrity sha512-K8A6WN8CHyBJQV3omQClEdbre9nobPUr6TJvuKbadYU+z8AprjG8/u71BowEGiXV2PjBv8NNbWqj0tgpB7uNIg==
+  dependencies:
+    "@backstage/app-defaults" "^1.5.0"
+    "@backstage/catalog-model" "^1.4.4"
+    "@backstage/core-app-api" "^1.12.0"
+    "@backstage/core-components" "^0.14.0"
+    "@backstage/core-plugin-api" "^1.9.0"
+    "@backstage/integration-react" "^1.1.24"
+    "@backstage/plugin-catalog-react" "^1.10.0"
+    "@backstage/theme" "^0.5.1"
+    "@material-ui/core" "^4.12.2"
+    "@material-ui/icons" "^4.9.1"
+    "@types/react" "^16.13.1 || ^17.0.0 || ^18.0.0"
+    react-use "^17.2.4"
+
 "@backstage/e2e-test-utils@^0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@backstage/e2e-test-utils/-/e2e-test-utils-0.1.1.tgz#309164a5006593da711f55f430dc4d11a3036514"
@@ -9834,6 +9852,7 @@ anymatch@^3.0.3, anymatch@~3.1.2:
     "@backstage/plugin-user-settings" "^0.8.1"
     "@backstage/theme" "^0.5.1"
     "@circleci/backstage-plugin" "^0.1.1"
+    "@internal/backstage-plugin-sample" "^0.1.0"
     "@material-ui/core" "^4.12.2"
     "@material-ui/icons" "^4.9.1"
     history "^5.0.0"
