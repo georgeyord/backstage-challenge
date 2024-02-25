@@ -7,16 +7,10 @@ import {
   ResponseErrorPanel,
 } from '@backstage/core-components';
 import useAsync from 'react-use/lib/useAsync';
+import Grid from '@mui/material/Grid';
+import ItemCard from '../ItemCard/ItemCard';
 
-const useStyles = makeStyles({
-  avatar: {
-    height: 32,
-    width: 32,
-    borderRadius: '50%',
-  },
-});
-
-type User = {
+export type TUser = {
   gender: string; // "male"
   name: {
     title: string; // "Mr",
@@ -26,49 +20,34 @@ type User = {
   email: string; // "duane.reed@example.com"
   picture: string; // "https://api.dicebear.com/6.x/open-peeps/svg?seed=Duane"
   nat: string; // "AU"
+  emailHash: string;
 };
 
 type DenseTableProps = {
-  users: User[];
+  users: TUser[];
 };
 
 export const DenseTable = ({ users }: DenseTableProps) => {
-  const classes = useStyles();
-
-  const columns: TableColumn[] = [
-    { title: 'Avatar', field: 'avatar' },
-    { title: 'Name', field: 'name' },
-    { title: 'Email', field: 'email' },
-    { title: 'Nationality', field: 'nationality' },
-  ];
-
-  const data = users.map(user => {
-    return {
-      avatar: (
-        <img
-          src={user.picture}
-          className={classes.avatar}
-          alt={user.name.first}
-        />
-      ),
-      name: `${user.name.first} ${user.name.last}`,
-      email: user.email,
-      nationality: user.nat,
-    };
-  });
-
   return (
-    <Table
-      title="Example User List"
-      options={{ search: false, paging: false }}
-      columns={columns}
-      data={data}
-    />
+    <Grid container spacing={2}>
+      {users.map((user: TUser, index) => (
+        <Grid item xs={12} sm={6} md={4} key={index}>
+          <ItemCard
+            gender={user.gender}
+            name={user.name}
+            email={user.email}
+            picture={user.picture}
+            nat={user.nat}
+            emailHash={user.emailHash}
+          />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
 export const ExampleFetchComponent = () => {
-  const { value, loading, error } = useAsync(async (): Promise<User[]> => {
+  const { value, loading, error } = useAsync(async (): Promise<TUser[]> => {
     const response = await fetch(
       'http://localhost:7007/api/sample-backend/users',
     );
