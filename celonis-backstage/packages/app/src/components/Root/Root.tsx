@@ -5,6 +5,7 @@ import ExtensionIcon from '@material-ui/icons/Extension';
 import MapIcon from '@material-ui/icons/MyLocation';
 import LibraryBooks from '@material-ui/icons/LibraryBooks';
 import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
+import PersonIcon from '@material-ui/icons/Person';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -74,6 +75,11 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
           icon={CreateComponentIcon}
           to="innovate"
           text="Create..."
+        />
+        <SidebarItem
+          icon={PersonIcon}
+          to="sample-frontend"
+          text="Users (Self-Created)"
         />
         {/* End global nav */}
         <SidebarDivider />
