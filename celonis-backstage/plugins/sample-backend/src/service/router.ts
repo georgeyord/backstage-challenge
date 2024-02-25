@@ -1,5 +1,5 @@
 import { errorHandler } from '@backstage/backend-common';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { Logger } from 'winston';
 import { getRootLogger } from '@backstage/backend-common';
@@ -246,8 +246,15 @@ export async function createRouter(
     response.json({ status: 'ok' });
   });
 
-  router.get('/users', (_, response) => {
-    response.json(exampleUsers);
+  router.get('/users', (req: Request, response: Response) => {
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = 5;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const paginatedUsers = exampleUsers.results.slice(startIndex, endIndex);
+
+    response.json({ results: paginatedUsers });
   });
   router.use(errorHandler());
   return router;
