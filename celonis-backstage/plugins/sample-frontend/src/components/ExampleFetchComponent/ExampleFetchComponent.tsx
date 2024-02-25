@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Progress, ResponseErrorPanel } from '@backstage/core-components';
 import useAsync from 'react-use/lib/useAsync';
 import Grid from '@mui/material/Grid';
 import ItemCard from '../ItemCard/ItemCard';
+import Pagination from '@mui/material/Pagination';
+import { Box } from '@material-ui/core';
 
 export type TUser = {
   gender: string; // "male"
@@ -41,14 +43,15 @@ export const DenseCards = ({ users }: DenseCardProps) => {
 };
 
 export const ExampleFetchComponent = () => {
+  const [page, setPage] = useState(1);
   const { value, loading, error } = useAsync(async (): Promise<TUser[]> => {
     const response = await fetch(
-      'http://localhost:7007/api/sample-backend/users',
+      `http://localhost:7007/api/sample-backend/users?page=${page}`,
     );
     if (!response.ok) throw new Error('Failed to fetch users');
     const data = await response.json();
     return data.results;
-  }, []);
+  }, [page]);
 
   if (loading) {
     return <Progress />;
@@ -56,5 +59,17 @@ export const ExampleFetchComponent = () => {
     return <ResponseErrorPanel error={error} />;
   }
 
-  return <DenseCards users={value || []} />;
+  return (
+    <>
+      <DenseCards users={value || []} />
+      <Box display="flex" justifyContent="center" marginTop={2}>
+        <Pagination
+          count={4}
+          page={page}
+          onChange={(_, newPage) => setPage(newPage)}
+        />
+      </Box>
+      ;
+    </>
+  );
 };
