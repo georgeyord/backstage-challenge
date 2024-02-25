@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import Router from 'express-promise-router';
 import { Logger } from 'winston';
 import { getRootLogger } from '@backstage/backend-common';
+import * as crypto from 'crypto';
 
 export interface RouterOptions {
   logger: Logger;
@@ -252,7 +253,12 @@ export async function createRouter(
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
-    const paginatedUsers = exampleUsers.results.slice(startIndex, endIndex);
+    const paginatedUsers = exampleUsers.results
+      .slice(startIndex, endIndex)
+      .map(user => {
+        const hash = crypto.createHash('md5').update(user.email).digest('hex');
+        return { ...user, emailHash: hash };
+      });
 
     response.json({ results: paginatedUsers });
   });
