@@ -7,11 +7,9 @@ import Avatar from '@mui/material/Avatar';
 import { TUser } from '../ExampleFetchComponent/ExampleFetchComponent';
 import * as crypto from 'crypto';
 import { Tooltip } from '@material-ui/core';
-import {
-  StatusOK,
-  StatusWarning,
-  WarningPanel,
-} from '@backstage/core-components';
+import { WarningPanel } from '@backstage/core-components';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
+import ErrorIcon from '@material-ui/icons/Error';
 
 const isValidEmail = (email: string, hash: string): boolean => {
   const iconFromEmail = crypto.createHash('md5').update(email).digest('hex');
@@ -46,7 +44,7 @@ export default function ItemCard(user: TUser) {
               >
                 Email: {user.email}
               </Typography>
-              {isEmailValid ? <StatusOK /> : <StatusWarning />}
+              {isEmailValid ? <VerifiedUserIcon /> : <ErrorIcon />}
             </Box>
           </Tooltip>
 
