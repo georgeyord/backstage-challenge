@@ -1,11 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {
-  Table,
-  TableColumn,
-  Progress,
-  ResponseErrorPanel,
-} from '@backstage/core-components';
+import { Progress, ResponseErrorPanel } from '@backstage/core-components';
 import useAsync from 'react-use/lib/useAsync';
 import Grid from '@mui/material/Grid';
 import ItemCard from '../ItemCard/ItemCard';
@@ -23,11 +17,11 @@ export type TUser = {
   emailHash: string;
 };
 
-type DenseTableProps = {
+type DenseCardProps = {
   users: TUser[];
 };
 
-export const DenseTable = ({ users }: DenseTableProps) => {
+export const DenseCards = ({ users }: DenseCardProps) => {
   return (
     <Grid container spacing={2}>
       {users.map((user: TUser, index) => (
@@ -62,5 +56,5 @@ export const ExampleFetchComponent = () => {
     return <ResponseErrorPanel error={error} />;
   }
 
-  return <DenseTable users={value || []} />;
+  return <DenseCards users={value || []} />;
 };
