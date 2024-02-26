@@ -1,130 +1,55 @@
 # Technical challenge
 
-## Objective
+# Celonis Coding Challenge
 
-The goal of the challenge is to run Backstage locally, understand the basic parts, extend it with plugins and enhance both the backend and frontend part.
+## Remarks
 
-You are kindly requested to read the following document, follow the directions to complete the challenge and prepare answer any questions, noted as `Q*`, example `Q1`. The answers should be short and to the point. Challenge the questions and highlight any missing points.
+I thoroughly enjoyed participating in this Celonis coding challenge, particularly diving into the technical aspects of the mono-repo architecture and its integration with React/MUI. The challenge was both fun and enlightening, providing a hands-on experience with Backstage's efficient setup. Throughout the process, I was impressed by the architecture's capabilities and am eager to explore more within Celonis projects. Despite encountering some challenges, the comprehensive documentation was instrumental in guiding me through. The addition of pagination and an intuitive navigation feature in the frontend plugin of the navbar were personal touches I felt compelled to implement, believing they truly rounded off the project. Overall, the challenge was a rewarding experience, taking approximately 4-5 hours to complete, excluding the time spent on yarn installations.
 
-> The time spent on the challenge should be limited to **4 hours**.
->
-> Joke disclaimer: Don't count `yarn install` in the duration!
+## Getting Started
 
-### What is Backstage?
+To run the project, navigate to the `celonis-backstage` folder and enter the following command:
 
-Backstage is an open platform for building developer portals. Powered by a centralized software catalog, Backstage brings order to our microservices and infrastructure and enables the product teams to ship high-quality code quickly — without compromising autonomy.
-
-Backstage unifies all our infrastructure tooling, services, apis and documentation to create a streamlined development environment from end to end.
-
-### Why is Backstage part of the technical challenge?
-
-In Developer Experience team of Celonis, we have invested heavily on Backstage and delivered impactful features that our team of developers uses every day. We have planned to extend further this platform and we invite you to demonstrate your skills in order to become part of this effort.
-
-## Challenge
-
-Contribute to an existing project, using Typescript and ReactJS, and understand the provided documentation. Also, put in use your git skills to publish your deliverables; be thorough on your commits and related messages to showcase your git practices.
-
-When you finish your challenge, reply to the email you received and send the url to the private repo along with the answers to the questions.
-
-### Run the app locally
-
-> Note: You can run the challenge with your preferred setup, but we're also providing a `.devcontainer` folder configuration in case you want to use it with VSCODE.
-
-**Steps:**
-
-- Fork this repository into a private repository and give access to the following handles: `georgeyord`, `LauraMoraB` and `mariosant`.
-- Read [Backstage’s docs](https://backstage.io/docs/getting-started/#create-your-backstage-app) to initialize Backstage locally
-- Use SQlite as *persistent* database by adding to the `app-config.local.yaml`:
-
-```yaml
-backend:
-  database:
-    client: better-sqlite3
-    connection:
-      directory: ../../challenge-data/sqlite
+```bash
+yarn dev
 ```
 
-- At this point, you should have a working Backstage instance running locally. Verify it and continue to the next section.
+## Questions and Answers
 
-**Questions**
+### Q1: When Backstage service is up and running, how many apps are running?
+- **Answer**: 2 Apps are running - the backend and the frontend.
 
-- **Q1.** When Backstage service is up and running, how many apps are running?
-- **Q2.** How many ports are used on the hosting machine?
-- **Q3.** Why do we have 3 `package.json` files?
-- **Q4.** In which `package.json` file would you put a new dependency and why?
-- **Q5.** Why changes on `app-config.local.yaml` are not commited by default on git? Is this a good or bad practice and why?
-- **Q6.** Would you use the existing `app-config.production.yaml` to configure the database credentials for your production database and commit the changes in git?
-- **Q7.** Can you describe why we configure `backend.cors` values in `app-config.yaml`? What is CORS? Why is it important on modern browsers?
+### Q2: How many ports are used on the hosting machine?
+- **Answer**: 2 ports are used - 3000 for the frontend and 7000 for the backend.
 
-### Extend Backstage
+### Q3: Why do we have 3 package.json files?
+- **Answer**: The mono-repo architecture necessitates 3 package.json files - one for overall project configurations and one each for frontend and backend configurations.
 
-Now that you've successfully set up Backstage locally and confirmed its functionality, let's delve into understanding its plugin system.
+### Q4: In which package.json file would you put a new dependency and why?
+- **Answer**: New frontend dependencies should be added to `/packages/app/package.json`, while backend dependencies should go into `/packages/backend/package.json` to maintain organization and ensure dependencies are only installed where needed.
 
-#### 1. Installing the Shortcuts Plugin
+### Q5: Why changes on app-config.local.yaml are not committed by default on git? Is this a good or bad practice and why?
+- **Answer**: Changes to `app-config.local.yaml` are not committed to prevent sharing sensitive or environment-specific configurations. This is a good practice for security and flexibility in local development.
 
-Begin by integrating an open-source plugin into your Backstage instance. We'll install the [Shortcuts plugin](https://github.com/backstage/backstage/tree/master/plugins/shortcuts). This plugin enhances Backstage by adding a new section to the sidebar. Follow the instructions outlined in its README file to integrate it with your Backstage application.
+### Q6: Would you use the existing app-config.production.yaml to configure the database credentials for your production database and commit the changes in git?
+- **Answer**: No. It's recommended to use environment variables for production configurations like database credentials, enhancing security by preventing sensitive data exposure.
 
-Once the Shortcuts plugin is integrated and operational, we'd like to implement a few modifications:
+### Q7: Can you describe why we configure backend.cors values in app-config.yaml? What is CORS? Why is it important on modern browsers?
+- **Answer**: `backend.cors` values in `app-config.yaml` define CORS (Cross-Origin Resource Sharing) policies, crucial for security in modern web development by allowing controlled access to resources across different domains.
 
-- **Adding a Shortcut**: Incorporate a direct shortcut to the URL `https://www.celonis.com/` within the Shortcuts section; external url is used *on purpose*.
-- **Changing the Sidebar Icon**: Adjust the icon displayed on the sidebar to reflect a ChatIcon for improved visual representation.
+### Q8: Where it needs to be changed and why?
+- **Answer**: Changes should be made in `packages/app/src/components/Root/Root.tsx` to modify the `<SidebarItem/>` property, enhancing navigation consistency in the frontend.
 
-#### 2. Modifying Route Names
+### Q9: Which page is loaded first, Root.tsx or App.tsx, and why?
+- **Answer**: `App.tsx` loads first as it sets up the core components, plugins, and routing, serving as the entry point for the application.
 
-As part of our customization process, we aim to alter the route name for the `Create...` section from `/create` to `/innovate`.
+### Q10: How did you verify the plugin worked?
+- **Answer**: Verification was done using Postman with GET requests to backend endpoints, ensuring the backend plugin's functionality.
 
-**Questions**
+### Q11: How did this hash related to the email upgraded the validity of our data?
+- **Answer**: Hashing emails with MD5 validates data integrity by ensuring any alteration in the email would result in a different hash value.
 
-- **Q8:** Where it needs to be changed and why?
-- **Q9:** Which page is loaded first `Root.tsx` or `App.tsx` and why?
+### Q12: How does MD5 work, where should it be used and where not? Give some examples.
+- **Answer**: MD5 produces a fixed 128-bit hash value from any length of data, suitable for checksums and integrity checks but not for cryptographic security due to vulnerabilities.
 
-### Creating a Custom Backstage Plugin: Display Users
 
-Now that we've successfully installed an open-source plugin, it's time to work on custom features to display a list of Users in Backstage. To accomplish this, we'll divide the work between enhancing an existing Backend plugin and creating from scratch a Frontend one.
-
-#### 1. Extend a Backstage Backend plugin
-
-Let's begin with the Backend aspect of our feature. We provide an existing plugin located at the root of this repository, under `sample-backend`. This plugin comes with two default endpoints: `health` and `users`.
-
-##### **Initial Setup and Verification**
-
-- Add the `sample-backend` plugin to your Backstage application. TODO: [https://backstage.io/docs/plugins/integrating-plugin-into-software-catalog#import-your-plugin-and-embed-in-the-entities-page](plugin integration)
-- Run Bakcstage and verify the functionality by accessing the provided endpoints (`/api/sample-backend/health` and `/api/sample-backend/users`).
-
-**Questions**
-
-- **Q10:** Can you explain how did you verify the plugin worked?
-
-> Please, note that the plugin as we're providing it should work, *though some of the tests may be failing*.
-
-##### **Modifications**
-
-1. We ultimetly want to add a feature for displaying a list of items on a webpage. The list can potentially contain a large number of items, and we want to ensure smooth performance and user experience. Implement a function or method that takes in a list of items and returns a subset of items, limited to five items per page.
-2. For verification purposes, modify the API to also return the MD5 hash of each user's email.
-
-#### 2. Create a Backstage Frontend plugin
-
-- With our Backend setup in place, let's move on to developing the UI. Follow [this guide](https://backstage.io/docs/plugins/create-a-plugin/) to initialize a Frontend Plugin.
-- Run Backstage and verify that the Frontend plugin is visible in the UI.
-
-##### 1. Integration with Backend
-
-The sample plugin has already a functinality similar to our goal. The issue is that the user list is static. Enhance the Frontend plugin to consume the API provided by `sample-backend`. This doc on [Consuming APIs](https://backstage.io/docs/frontend-system/utility-apis/consuming/) is at you disposal.
-
-##### 2. UI Implementation
-
-Display the list of users using a tile view, as described in the [Tile View documentation](https://backstage.io/storybook/?path=/story/layout-item-cards--default).
-
-##### 3. Verification of Email Integrity
-
-Implement a status icon to visually indicate the validity of each user's email. Verify that the email value has not been tampered with and is authentic.
-
-**Questions**
-
-- **Q11:** How did this hash related to the email upgraded the validity of our data?
-- **Q12:** How does nd5 work, where should it be used and where not? Give some examples.
-
-### Notes
-
-- Backstage is currenlty migrating the backend to a new system. Since it's still in alpha, we won't be using it in this challenge. Beware that some packages may appear as deprecated (like `useHotMemoize`), please ignore these warnings and proceed with your development as usual.
-- When running `yarn install` for the first time, please be aware that it may take a significant amount of time to complete. This delay is expected due to the installation of necessary dependencies and configurations.
