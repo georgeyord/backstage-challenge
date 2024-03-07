@@ -32,7 +32,8 @@ When you finish your challenge, reply to the email you received and send the url
 
 **Steps:**
 
-- Fork this repository into a private repository and give access to the following handles: `georgeyord`, `LauraMoraB` and `mariosant`.
+- Create a new private repository using this repository as a template and give access to the following handles: `georgeyord`, `LauraMoraB` and `mariosant`.
+  ![Github repo template](gh-repo-template.png)
 - Read [Backstage’s docs](https://backstage.io/docs/getting-started/#create-your-backstage-app) to initialize Backstage locally
 - Use SQlite as *persistent* database by adding to the `app-config.local.yaml`:
 
