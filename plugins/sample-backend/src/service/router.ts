@@ -1,11 +1,10 @@
 import { errorHandler } from '@backstage/backend-common';
+import { LoggerService } from '@backstage/backend-plugin-api';
 import express from 'express';
 import Router from 'express-promise-router';
-import { Logger } from 'winston';
-import { getRootLogger } from '@backstage/backend-common';
 
 export interface RouterOptions {
-  logger: Logger;
+  logger: LoggerService;
 }
 
 export const exampleUsers = {
@@ -236,7 +235,7 @@ export const exampleUsers = {
 export async function createRouter(
   options: RouterOptions,
 ): Promise<express.Router> {
-  const logger = getRootLogger();
+  const { logger } = options;
 
   const router = Router();
   router.use(express.json());
@@ -249,6 +248,7 @@ export async function createRouter(
   router.get('/users', (_, response) => {
     response.json(exampleUsers);
   });
+
   router.use(errorHandler());
   return router;
 }
