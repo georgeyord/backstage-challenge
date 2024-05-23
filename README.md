@@ -63,7 +63,7 @@ Now that you've successfully set up Backstage locally and confirmed its function
 
 #### 1. Installing the Shortcuts Plugin
 
-Begin by integrating an open-source plugin into your Backstage instance. We'll install the [Shortcuts plugin](https://github.com/backstage/backstage/tree/master/plugins/shortcuts). This plugin enhances Backstage by adding a new section to the sidebar. Follow the instructions outlined in its README file to integrate it with your Backstage application.
+Begin by integrating an open-source plugin into your Backstage instance. We'll install the [Shortcuts plugin]([https://github.com/backstage/backstage/tree/master/plugins/shortcuts](https://github.com/backstage/community-plugins/blob/main/workspaces/shortcuts/plugins/shortcuts/README.md)). This plugin enhances Backstage by adding a new section to the sidebar. Follow the instructions outlined in its README file to integrate it with your Backstage application.
 
 Once the Shortcuts plugin is integrated and operational, we'd like to implement a few modifications:
 
@@ -89,8 +89,8 @@ Let's begin with the Backend aspect of our feature. We provide an existing plugi
 
 ##### **Initial Setup and Verification**
 
-- Add the `sample-backend` plugin to your Backstage application. TODO: [https://backstage.io/docs/plugins/integrating-plugin-into-software-catalog#import-your-plugin-and-embed-in-the-entities-page](plugin integration)
-- Run Bakcstage and verify the functionality by accessing the provided endpoints (`/api/sample-backend/health` and `/api/sample-backend/users`).
+- Add the `sample-backend` plugin to your Backstage application. [https://backstage.io/docs/plugins/integrating-plugin-into-software-catalog#import-your-plugin-and-embed-in-the-entities-page](plugin integration)
+- Run Bakcstage and verify the functionality by accessing the provided endpoints (`/api/sample/health` and `/api/sample/users`).
 
 **Questions**
 
